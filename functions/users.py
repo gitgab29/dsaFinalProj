@@ -7,13 +7,13 @@ def connect_db():
     return conn, cursor
 
 # Function to add a new user to the database
-def add_user(name, email, password, age, gender, weight):
+def add_user(name, email, password, age, gender, weight, preferences):
     conn, cursor = connect_db()
     try:
         cursor.execute('''
-        INSERT INTO users (name, email, password, age, gender, weight)
+        INSERT INTO users (name, email, password, age, gender, weight, preferences)
         VALUES (?, ?, ?, ?, ?, ?)
-        ''', (name, email, password, age, gender, weight))
+        ''', (name, email, password, age, gender, weight, preferences))
         conn.commit()
         print(f"User {name} added successfully!")
     except sqlite3.IntegrityError:
@@ -74,7 +74,7 @@ def search_user_by_email(email):
 # Example Usage
 # if __name__ == "__main__":
     # Add users
-    # add_user("Test User Two", "testusertwo@example.com", "password123two", 27, "Female", 72)
+    # add_user("Test User Alpha", "testuseralpha@example.com", "password123alpha", 26, "Female", 135, )
     
     # View user
     # view_user("testusertwo@example.com")
